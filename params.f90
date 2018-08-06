@@ -19,7 +19,7 @@
   integer(4),parameter :: NS=15
   integer(4),parameter :: NC=16
   integer(4),parameter :: ND=15
-  integer(4),parameter :: Np=NS+NC+ND, NV=26, NE=101
+  integer(4),parameter :: Np=NS+NC+ND, NV=52, NE=201
   integer(4),parameter :: LDA=Np,LWORK=Np
   integer(4) UB_shape, i, k, iv
   complex(8) zplus, ck, ka
