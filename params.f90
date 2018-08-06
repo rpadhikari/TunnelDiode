@@ -1,15 +1,15 @@
   implicit none
-  complex(8),parameter :: j=(0,1)
+  complex(8),parameter :: j=(0.0d0, 1.0d0) ! pure complex number
 
-  real(8),parameter :: pi=3.14159265358979 ! Constant Pi
+  real(8),parameter :: pi=3.141592653589790d0 ! Constant Pi
   real(8),parameter :: hbar=1.05457180013d-34 ! Joule -Sec
   real(8),parameter :: q=1.602176620898d-19 ! Coulomb
-  real(8),parameter :: m=0.250d0*9.109383560d-31  ! Kg
+  real(8),parameter :: m=0.250d0*9.109383560d-31  ! effective mass of electron in Kg
   real(8),parameter :: ie=3.87404586591771d-05 ! (q*q)/(2*pi*hbar);
   real(8),parameter :: ef=0.10d0 ! eV
   real(8),parameter :: Kt=0.0250d0 ! eV
 !inputs
-  real(8),parameter :: a=3.0e-10
+  real(8),parameter :: a=3.0d-10
   real(8),parameter :: t0=1.69332536885689d0 !(hbar^2)/(2*m*(a^2)*q)
   real(8) dx, V, mu1, mu2, dx_U1, dE, It
 
