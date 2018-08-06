@@ -11,23 +11,23 @@ program main
   UB(NS+1+4:NS+1+4+NC-8)=0.0d0
   UB(NS+1+4+NC-8:NS+1+4+NC-8+4)=0.40d0
   UB(NS+1+4+NC-8+4:)=0.0d0
-  open(2,file='pot.dat', action='write')
+  open(1,file='pot.dat', action='write')
   do i=1,UB_shape
-    write(2,*) dble(i)*0.01, UB(i)
+    write(1,*) dble(i)*0.01, UB(i)
   end do
-  close(2)
+  close(1)
 ! setting up T matrix
   T=0.0d0
   T(1,1)=2.0d0*t0
   do i=2,Np
-    T(i,i)=2*t0+UB(i)  ! I did T=T+diag(UB) in here since diag(UB) is just
+    T(i,i)=2.0d0*t0+UB(i)  ! I did T=T+diag(UB) in here since diag(UB) is just
     T(i,i-1)=-t0       ! the main diagonal matrix
     T(i-1,i)=-t0
   end do
 
 ! Bias
 ! Defining VV matrix
-  dx=(0.50d0-0.0d0)/(NV-1)
+  dx=0.50d0/(NV-1)
   do i=1,NV
     VV(i)=0.0d0+dble(i-1)*dx
   end do
@@ -42,11 +42,11 @@ program main
 
 ! linspacing E as vector
   do i=1, NE
-    E(i)=-0.20d0+(i-1)*(0.80d0+0.20d0)/(NE-1)
+    E(i)=-0.20d0+dble(i-1)*(0.80d0+0.20d0)/dble(NE-1)
   end do
 
   do i=1, Np
-    ceye(i,i)=(1,0)
+    ceye(i,i)=(1.0d0, 0.0d0) ! pure real number
   end do
 
   do iv=1, NV
@@ -116,11 +116,16 @@ program main
     II(iv)=It
   end do
 
-  open(1,file='iv_tunnel.dat',action='write')
+  open(2,file='iv_tunnel.dat',action='write')
   do i=1, NV
-    write(1,*) VV(i), II(i)
+    write(2,*) VV(i), II(i)
   end do
-  close(1)
+  close(2)
+  open(3,file='trans.dat', action='write')
+  do i=i, NE
+    write(3,*) TM(i), E(i)
+  end do
+  close(3)
   call dealloc
 
 end program main
