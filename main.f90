@@ -16,7 +16,7 @@ program main
     write(1,*) dble(i)*0.01, UB(i)
   end do
   close(1)
-! setting up T matrix
+! setting up T matrix (Numerov method would be better here)
   T=0.0d0
   T(1,1)=2.0d0*t0
   do i=2,Np
@@ -26,7 +26,7 @@ program main
   end do
 
 ! Bias
-! Defining VV matrix
+! Defining VV array
   dx=0.50d0/(NV-1)
   do i=1,NV
     VV(i)=0.0d0+dble(i-1)*dx
