@@ -3,11 +3,11 @@
 
   real(8),parameter :: pi=3.141592653589790d0 ! Constant Pi
   real(8),parameter :: hbar=1.05457180013d-34 ! Joule -Sec
-  real(8),parameter :: q=1.602176620898d-19 ! Coulomb
+  real(8),parameter :: q=1.602176620898d-19 ! Ecectronic charge in Coulomb
   real(8),parameter :: m=0.250d0*9.109383560d-31  ! effective mass of electron in Kg
   real(8),parameter :: ie=3.87404586591771d-05 ! (q*q)/(2*pi*hbar);
-  real(8),parameter :: ef=0.10d0 ! eV
-  real(8),parameter :: Kt=0.0250d0 ! eV
+  real(8),parameter :: ef=0.10d0 ! Fermi energy (eV)
+  real(8),parameter :: Kt=0.0250d0 ! Room temperature energy (eV)
 !inputs
   real(8),parameter :: a=3.0d-10
   real(8),parameter :: t0=1.69332536885689d0 !(hbar^2)/(2*m*(a^2)*q)
@@ -16,10 +16,12 @@
   real(8) T12,T13,T23
 
   integer(8) INFO, r
+  ! Potential well shape steps
   integer(4),parameter :: NS=15
   integer(4),parameter :: NC=16
   integer(4),parameter :: ND=15
-  integer(4),parameter :: Np=NS+NC+ND, NV=52, NE=201
+  integer(4),parameter :: Np=NS+NC+ND, NV=52
+  integer(4), parameter :: NE=201 ! energy steps
   integer(4),parameter :: LDA=Np,LWORK=Np
   integer(4) UB_shape, i, k, iv
   complex(8) zplus, ck, ka
